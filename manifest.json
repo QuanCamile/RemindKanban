@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Kanban Tracker Bridge",
+  "version": "0.1.0",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://kanban-agent.voanhquan-hcm.workers.dev/*"
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cds.hcmict.io/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "injected.js"
+      ],
+      "matches": [
+        "https://cds.hcmict.io/*"
+      ]
+    }
+  ]
+}
