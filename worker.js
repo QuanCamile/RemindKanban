@@ -184,11 +184,11 @@ async function handleCron(env) {
   const warnRows = await env.DB.prepare(`
     SELECT task_id, title, deadline_at
     FROM tasks
-    WHERE status='RUNNING' AND warned=0 AND warn_at <= ?
+    WHERE status='RUNNING' AND warned=0 AND warn_at <= ? AND paused_at IS NULL
   `).bind(now).all();
 
   for (const r of warnRows.results) {
-    await runWithRetries(() => env.DB.prepare(`UPDATE tasks SET warned=1, updated_at=? WHERE task_id=?`)
+    await runWithRetries(() => env.DB.prepare(`UPDATE tasks SET warned=1, updated_at=? WHERE task_id=? AND status='RUNNING' AND paused_at IS NULL`)
       .bind(now, r.task_id).run());
 
     const remainMs = Number(r.deadline_at) - now;
@@ -208,7 +208,7 @@ async function handleCron(env) {
   const closeRows = await env.DB.prepare(`
     SELECT task_id, title, client_bearer, client_cds_api_key, task_url, board_id
     FROM tasks
-    WHERE status='RUNNING' AND closed=0 AND deadline_at <= ?
+    WHERE status='RUNNING' AND closed=0 AND deadline_at <= ? AND paused_at IS NULL
   `).bind(closeThreshold).all();
 
   for (const r of closeRows.results) {
