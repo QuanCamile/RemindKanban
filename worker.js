@@ -281,6 +281,16 @@ async function handleCron(env) {
   `).bind(closeThreshold).all();
 
   for (const r of closeRows.results) {
+    // Cache tokens before they are potentially cleared so subsequent fetch can use them
+    if (r.client_bearer || r.client_cds_api_key) {
+      cachedAuth = { 
+        token: r.client_bearer || (cachedAuth && cachedAuth.token), 
+        cdsApiKey: r.client_cds_api_key || (cachedAuth && cachedAuth.cdsApiKey), 
+        refreshToken: r.client_refresh_token || (cachedAuth && cachedAuth.refreshToken), 
+        at: Date.now() 
+      };
+    }
+
     // Try to call the closing API first; only mark CLOSED when it succeeds.
     let apiMsg = null;
     try {
@@ -411,6 +421,7 @@ async function getTasksData(env, taskId = null) {
       "accept": "application/json",
       "origin": "https://cds.hcmict.io",
       "referer": "https://cds.hcmict.io",
+      "mac-address": "WEB",
       "x-request-timestamp": new Date().toISOString(),
     };
 
@@ -596,8 +607,14 @@ async function getTasksData(env, taskId = null) {
       };
 
       let st;
+      const actualStatusId = Number(task.status_id ?? task.statusId ?? task.status ?? -1);
+
       if (runningFlag === 1) {
-        st = "ĐANG THỰC HIỆN";
+        if (actualStatusId === 10) {
+          st = "Chờ đánh giá";
+        } else {
+          st = "ĐANG THỰC HIỆN";
+        }
       } else if (runningFlag === 2) {
         st = "ĐÃ PAUSE";
       } else {

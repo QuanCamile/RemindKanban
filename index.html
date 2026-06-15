@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -15,7 +16,7 @@
       --text-secondary: #94a3b8;
       --accent: #3b82f6;
       --accent-hover: #60a5fa;
-      
+
       --status-blue: rgba(59, 130, 246, 0.2);
       --status-blue-text: #60a5fa;
       --status-green: rgba(16, 185, 129, 0.2);
@@ -27,7 +28,7 @@
       --status-gray: rgba(100, 116, 139, 0.2);
       --status-gray-text: #94a3b8;
     }
-    
+
     * {
       box-sizing: border-box;
     }
@@ -43,10 +44,12 @@
       align-items: center;
       padding: 40px 20px;
       overflow-x: hidden;
+      overflow-y: hidden;
     }
 
     /* Ambient background glow */
-    body::before, body::after {
+    body::before,
+    body::after {
       content: '';
       position: absolute;
       width: 500px;
@@ -58,12 +61,27 @@
       z-index: -1;
       animation: float 20s infinite ease-in-out alternate;
     }
-    body::before { top: -100px; left: -100px; }
-    body::after { bottom: -100px; right: -100px; animation-delay: -10s; background: #8b5cf6; }
+
+    body::before {
+      top: -100px;
+      left: -100px;
+    }
+
+    body::after {
+      bottom: -100px;
+      right: -100px;
+      animation-delay: -10s;
+      background: #8b5cf6;
+    }
 
     @keyframes float {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(50px, 50px); }
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(50px, 50px);
+      }
     }
 
     .container {
@@ -109,7 +127,7 @@
     .table-wrapper {
       overflow-x: auto;
     }
-    
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -172,38 +190,100 @@
     }
 
     /* Status Colors */
-    .status-giao-viec { background: var(--status-blue); color: var(--status-blue-text); border: 1px solid rgba(59, 130, 246, 0.3); }
-    .status-dang-thuc-hien { background: var(--status-green); color: var(--status-green-text); border: 1px solid rgba(16, 185, 129, 0.3); }
-    .status-cho-danh-gia { background: var(--status-orange); color: var(--status-orange-text); border: 1px solid rgba(245, 158, 11, 0.3); }
-    .status-tre-han { background: var(--status-red); color: var(--status-red-text); border: 1px solid rgba(239, 68, 68, 0.3); }
-    .status-da-pause, .status-tam-ngung { background: var(--status-gray); color: var(--status-gray-text); border: 1px solid rgba(100, 116, 139, 0.3); }
-    .status-default { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .status-giao-viec {
+      background: var(--status-blue);
+      color: var(--status-blue-text);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .status-dang-thuc-hien {
+      background: var(--status-green);
+      color: var(--status-green-text);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-cho-danh-gia {
+      background: var(--status-orange);
+      color: var(--status-orange-text);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .status-tre-han {
+      background: var(--status-red);
+      color: var(--status-red-text);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .status-da-pause,
+    .status-tam-ngung {
+      background: var(--status-gray);
+      color: var(--status-gray-text);
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+
+    .status-default {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
     /* Skeleton Loader */
     .skeleton {
-      background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
       background-size: 200% 100%;
       animation: loading 1.5s infinite;
       border-radius: 4px;
     }
 
-    .sk-text { height: 16px; width: 80%; margin-bottom: 8px; }
-    .sk-badge { height: 24px; width: 100px; border-radius: 20px; }
-    .sk-id { height: 16px; width: 60px; }
+    .sk-text {
+      height: 16px;
+      width: 80%;
+      margin-bottom: 8px;
+    }
+
+    .sk-badge {
+      height: 24px;
+      width: 100px;
+      border-radius: 20px;
+    }
+
+    .sk-id {
+      height: 16px;
+      width: 60px;
+    }
 
     @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
     }
 
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .error-msg {
@@ -233,15 +313,18 @@
       vertical-align: middle;
       gap: 4px;
     }
+
     .btn-action:hover {
       background: rgba(255, 255, 255, 0.15);
     }
+
     .btn-action:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -250,10 +333,12 @@
     </header>
 
     <div class="glass-panel">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; font-size: 15px;">
+      <div
+        style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; font-size: 15px;">
         <div>
-          <span style="color: var(--text-secondary);">Step hiện tại:</span> 
-          <span id="stepNameDisplay" class="skeleton sk-text" style="display:inline-block; width:200px; vertical-align:middle; margin-left:8px; margin-bottom:0;"></span>
+          <span style="color: var(--text-secondary);">Step hiện tại:</span>
+          <span id="stepNameDisplay" class="skeleton sk-text"
+            style="display:inline-block; width:200px; vertical-align:middle; margin-left:8px; margin-bottom:0;"></span>
         </div>
         <button class="btn-action" onclick="reloadTasks(this)" title="Tải lại danh sách">🔄 Refresh</button>
       </div>
@@ -270,19 +355,38 @@
           <tbody id="taskTableBody">
             <!-- Skeletons -->
             <tr>
-              <td><div class="skeleton sk-id"></div></td>
-              <td><div class="skeleton sk-text"></div><div class="skeleton sk-text" style="width:50%"></div></td>
-              <td><div class="skeleton sk-badge"></div></td>
+              <td>
+                <div class="skeleton sk-id"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-text"></div>
+                <div class="skeleton sk-text" style="width:50%"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-badge"></div>
+              </td>
             </tr>
             <tr>
-              <td><div class="skeleton sk-id"></div></td>
-              <td><div class="skeleton sk-text"></div></td>
-              <td><div class="skeleton sk-badge"></div></td>
+              <td>
+                <div class="skeleton sk-id"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-text"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-badge"></div>
+              </td>
             </tr>
             <tr>
-              <td><div class="skeleton sk-id"></div></td>
-              <td><div class="skeleton sk-text" style="width:70%"></div></td>
-              <td><div class="skeleton sk-badge"></div></td>
+              <td>
+                <div class="skeleton sk-id"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-text" style="width:70%"></div>
+              </td>
+              <td>
+                <div class="skeleton sk-badge"></div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -306,7 +410,7 @@
         btn.disabled = true;
         const oldHtml = btn.innerHTML;
         btn.innerHTML = '⏳...';
-        
+
         document.getElementById('taskTableBody').innerHTML = `
             <tr>
               <td><div class="skeleton sk-id"></div></td>
@@ -323,7 +427,7 @@
         document.getElementById('stepNameDisplay').textContent = "";
 
         await fetchTasks();
-        
+
         btn.innerHTML = oldHtml;
         btn.disabled = false;
       }
@@ -342,7 +446,7 @@
         }
 
         const data = json.data;
-        
+
         // Remove skeleton class and set text
         stepNameEl.className = "";
         stepNameEl.textContent = `${data.step_name} (ID: ${data.step_id})`;
@@ -358,7 +462,7 @@
           const tr = document.createElement('tr');
           tr.style.animation = `fadeInUp 0.4s ease-out ${index * 0.05}s forwards`;
           tr.style.opacity = '0';
-          
+
           let actionHtml = '';
           if (task.status === "ĐANG THỰC HIỆN") {
             actionHtml = `<button class="btn-action" style="margin-left: 8px;" onclick="pauseTask('${task.id}', this)" title="Pause task">⏸️ Pause</button>`;
@@ -383,7 +487,7 @@
 
     async function pauseTask(taskId, btn) {
       if (!confirm(`Bạn có chắc muốn Pause task #${taskId}?`)) return;
-      
+
       const originalText = btn.innerHTML;
       btn.innerHTML = '⏳...';
       btn.disabled = true;
@@ -395,11 +499,11 @@
           body: JSON.stringify({ taskId })
         });
         const json = await res.json();
-        
+
         if (!json.success) {
           throw new Error(json.message || 'Unknown error');
         }
-        
+
         // Reload tasks to show updated status
         await fetchTasks();
       } catch (err) {
@@ -413,4 +517,5 @@
     document.addEventListener('DOMContentLoaded', fetchTasks);
   </script>
 </body>
+
 </html>
